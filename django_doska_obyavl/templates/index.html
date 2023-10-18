@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Доска объявлений{% endblock title %}</title>
+    <link href="{% static 'bootstrap-5.2.0-dist/css/bootstrap.min.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Главная страница</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/buy/">Куплю
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sell/">Продам</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/free/">Отдам даром</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/services/">Услуги соседей</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ju/">За Ю-валюту</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/create/">Разместить объявление</a>
+        </li>
+      </ul>
+      {% if user.is_authenticated %}
+      <ul>
+        <li>Вы вошли на сайт как {{ user.username }}</li>
+        <li><a href="{% url 'logout' %}">Выйти</a> </li>
+      </ul>
+      {% else %}
+      <ul>
+        <li><a href="{% url 'register' %}">Зарегистрироваться</li>
+        <li><a href="{% url 'login' %}">Войти</a> </li>
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+<br>
+<div class="container">{% block content %}{% endblock content %}</div>
+<script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'bootstrap-5.2.0-dist/js//bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

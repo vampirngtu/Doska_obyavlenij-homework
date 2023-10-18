@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block title %}{{ post.category.name }}{% endblock title %}
+
+{% block content %}
+{% for post in post_list %}
+{% if post.actuality %}
+<a href="{{ request.path }}{{ post.id }}"><h3 align="center"> {{ post.title }}</h3></a><br>
+<h2 align="center"> {{ post.time_create }}</h2><br>
+{{ post.description|safe }}<br>
+<h3 align="center"> {{ post.price }}валюта игровая</h3><br>
+{% endif %}
+{% endfor %}
+{% endblock content %}
